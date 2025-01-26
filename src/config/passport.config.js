@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const { SECRET_JWT } = process.env;
+const { SECRET_KEY } = process.env;
 
 const cookieExtractor = (req) => {
   let token = null;
@@ -48,7 +48,7 @@ passport.use(
       jwtFromRequest: ExtractJwt.fromExtractors([
         (req) => req?.cookies?.authToken,
       ]),
-      secretOrKey: SECRET_JWT,
+      secretOrKey: SECRET_KEY,
     },
     async (payload, done) => {
       try {
